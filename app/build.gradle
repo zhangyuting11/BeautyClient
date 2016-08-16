@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    testCompile 'junit:junit:4.12'
+    //兼容库
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["cardview-v7"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+
+    //view注解
+    compile rootProject.ext.dependencies["butterknife"]
+
+    //图片
+   compile rootProject.ext.dependencies["glide"]
+
+    //rx
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxjava"]
+
+    //retrofit
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["gsonconverter"]
+    compile rootProject.ext.dependencies["rxjavaadapter"]
+
+    //dagger2
+    compile rootProject.ext.dependencies["dagger"]
+    compile rootProject.ext.dependencies["annotation"]
+    apt rootProject.ext.dependencies["daggercomiler"]
+
+}
